@@ -7,7 +7,7 @@ import os
 from tqdm import tqdm
 from PIL import Image
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-print(f"🔥 Using device: {device}")
+print(f"Using device: {device}")
 transform = transforms.Compose([
     transforms.ToTensor(), 
 ])
@@ -23,7 +23,7 @@ def crop_fundus_image(image_path):
     """
     img = cv2.imread(image_path)
     if img is None:
-        print(f"❌ Error reading {image_path}")
+        print(f"Error reading {image_path}")
         return None
     img_tensor = transform(img).to(device)  
     gray = torch.mean(img_tensor, dim=0, keepdim=True) 
@@ -31,7 +31,7 @@ def crop_fundus_image(image_path):
     binary_np = binary_mask.squeeze().cpu().numpy().astype(np.uint8) * 255
     contours, _ = cv2.findContours(binary_np, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
     if not contours:
-        print(f"⚠️ No contours found in {image_path}")
+        print(f" No contours found in {image_path}")
         return img  
     largest_contour = max(contours, key=cv2.contourArea)
     x, y, w, h = cv2.boundingRect(largest_contour)
@@ -48,7 +48,7 @@ def process_folder(input_folder, output_folder):
     if not os.path.exists(output_folder):
         os.makedirs(output_folder)
     image_files = [f for f in os.listdir(input_folder) if f.lower().endswith(('.jpg', '.jpeg', '.png'))]
-    print(f"🚀 Processing {len(image_files)} images on {device}...\n")
+    print(f" Processing {len(image_files)} images on {device}...\n")
     for image_file in tqdm(image_files, desc="⏳ Cropping images", unit="img"):
         input_path = os.path.join(input_folder, image_file)
         output_path = os.path.join(output_folder, image_file)
@@ -58,7 +58,7 @@ def process_folder(input_folder, output_folder):
         if cropped_img is not None:
             cv2.imwrite(output_path, cropped_img)
 
-    print(f"\n✅ Processing complete. Cropped images saved to: {output_folder}")
+    print(f"\nProcessing complete. Cropped images saved to: {output_folder}")
 
 input_folder = r"D:\retina train\diabetic-retinopathy-detection\test\test"  
 output_folder = r"C:\Users\STIC-11\Desktop\sk1\processed\test" 
