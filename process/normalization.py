@@ -17,7 +17,7 @@ class RetinopathyDataset(Dataset):
 
         self.data = self.data[self.data['image'].apply(lambda x: os.path.exists(os.path.join(self.root_dir, x)))]
 
-        print(f"✅ Total valid images: {len(self.data)}")
+        print(f" Total valid images: {len(self.data)}")
 
     def __len__(self):
         return len(self.data)
@@ -47,7 +47,7 @@ def calculate_mean_std(dataloader, dataset_size):
     mean /= num_samples
     std /= num_samples
 
-    print(f"✅ Total images actually processed: {num_samples}")
+    print(f" Total images actually processed: {num_samples}")
     return mean, std
 
 if __name__ == "__main__":
@@ -64,5 +64,5 @@ if __name__ == "__main__":
 
     mean, std = calculate_mean_std(dataloader, dataset_size=len(dataset))
 
-    print(f"✅ Calculated Mean: {mean.tolist()}")
-    print(f"✅ Calculated Std: {std.tolist()}")
+    print(f"Calculated Mean: {mean.tolist()}")
+    print(f"Calculated Std: {std.tolist()}")
