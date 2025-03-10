@@ -6,12 +6,12 @@ import sys
 import os
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-print(f"🔥 Using device: {device}")
+print(f" Using device: {device}")
 model = densenet121(weights=None)  
 model.classifier = torch.nn.Linear(1024, 5)  
 model_path = r"C:\Users\STIC-11\Desktop\sk1\checkpoints\best_model1.ckpt"
 if not os.path.exists(model_path):
-    raise FileNotFoundError(f"❌ Model file not found: {model_path}")
+    raise FileNotFoundError(f" Model file not found: {model_path}")
 model.load_state_dict(torch.load(model_path, map_location=device))
 model.to(device).eval() 
 classes = ["No DR", "Mild", "Moderate", "Severe", "Proliferative DR"]
@@ -22,7 +22,7 @@ transform = transforms.Compose([
 ])
 def predict(image_path):
     if not os.path.exists(image_path):
-        raise FileNotFoundError(f"❌ Image not found: {image_path}")
+        raise FileNotFoundError(f"Image not found: {image_path}")
 
     image = Image.open(image_path).convert("RGB")
     image = transform(image).unsqueeze(0).to(device)
@@ -35,10 +35,10 @@ def predict(image_path):
     for i, prob in enumerate(probabilities[0]):
         print(f"{classes[i]}: {prob.item():.4f}")
 
-    print(f"\n✅ **Predicted Class:** {classes[predicted_class]}")
+    print(f"\n**Predicted Class:** {classes[predicted_class]}")
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:
-        print("❌ Usage: python test.py <image_path>")
+        print(" Usage: python test.py <image_path>")
     else:
         predict(sys.argv[1])
