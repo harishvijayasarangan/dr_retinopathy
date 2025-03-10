@@ -19,9 +19,9 @@ if __name__ == "__main__":
 
     os.makedirs("checkpoints", exist_ok=True)
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    print(f"🔥 Using device: {device}")
+    print(f" Using device: {device}")
     if device.type == "cuda":
-        print(f"⚡ GPU: {torch.cuda.get_device_name(0)}")
+        print(f" GPU: {torch.cuda.get_device_name(0)}")
 
 
     train_csv = r"C:\Users\STIC-11\Desktop\class2\train.csv"
@@ -204,15 +204,15 @@ if __name__ == "__main__":
         val_acc = 100 * val_correct / val_total
         val_loss = val_loss / len(val_loader)
 
-        print(f"✅ Epoch {epoch+1}/{num_epochs}")
+        print(f"Epoch {epoch+1}/{num_epochs}")
         print(f"   Train -> Loss: {epoch_loss:.4f}, Accuracy: {epoch_acc:.2f}%")
         print(f"   Val   -> Loss: {val_loss:.4f}, Accuracy: {val_acc:.2f}%")
 
 
         model_path = f"checkpoints/model4_epoch_{epoch+1}.ckpt"
         torch.save(model.state_dict(), model_path)
-        print(f"✅ Model saved successfully for epoch {epoch+1}!")
+        print(f"Model saved successfully for epoch {epoch+1}!")
 
         torch.save(model.state_dict(), "checkpoints/best_model4.ckpt")
 
-    print("✅ Training completed!")
+    print("Training completed!")
