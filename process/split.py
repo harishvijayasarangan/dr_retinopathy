@@ -65,4 +65,4 @@ train_csv_path = r"C:\Users\STIC-11\Desktop\class2\train.csv"
 val_csv_path = r"C:\Users\STIC-11\Desktop\class2\val.csv"
 train_df.to_csv(train_csv_path, index=False)
 val_df.to_csv(val_csv_path, index=False)
-print(f"✅ Data split successfully!\nTrain saved to: {train_csv_path}\nValidation saved to: {val_csv_path}")
+print(f"Data split successfully!\nTrain saved to: {train_csv_path}\nValidation saved to: {val_csv_path}")
