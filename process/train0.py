@@ -44,9 +44,9 @@ class RetinopathyDataset(Dataset):
         return image, label
 
 if __name__ == "__main__": 
-    print(f"🔥 Using device: {device}")
+    print(f" Using device: {device}")
     if device.type == "cuda":
-        print(f"⚡ GPU: {torch.cuda.get_device_name(0)}")
+        print(f" GPU: {torch.cuda.get_device_name(0)}")
 
     # Paths (Ensure these files exist)
     train_csv = r"D:\retina train\diabetic-retinopathy-detection\trainLabels.csv\trainLabels.csv"
@@ -123,7 +123,7 @@ if __name__ == "__main__":
 
     # Save Model
     torch.save(model.state_dict(), "densenet_retinopathy.pth")
-    print("🎉 Model training complete. Saved as densenet_retinopathy.pth")
+    print(" Model training complete. Saved as densenet_retinopathy.pth")
 """
 
 import os
@@ -191,9 +191,9 @@ class RetinopathyDataset(Dataset):
         return image, label
 
 if __name__ == "__main__": 
-    print(f"🔥 Using device: {device}")
+    print(f"Using device: {device}")
     if device.type == "cuda":
-        print(f"⚡ GPU: {torch.cuda.get_device_name(0)}")
+        print(f" GPU: {torch.cuda.get_device_name(0)}")
 
     train_csv = r"D:\retina train\diabetic-retinopathy-detection\trainLabels.csv\trainLabels.csv"
     val_csv = r"D:\retina train\diabetic-retinopathy-detection\trainLabels.csv\val.csv"
@@ -261,7 +261,7 @@ if __name__ == "__main__":
 
         epoch_loss = running_loss / len(train_loader)
         epoch_acc = 100 * correct / total
-        print(f"✅ Epoch {epoch+1}/{num_epochs} -> Loss: {epoch_loss:.4f}, Accuracy: {epoch_acc:.2f}%")
+        print(f"Epoch {epoch+1}/{num_epochs} -> Loss: {epoch_loss:.4f}, Accuracy: {epoch_acc:.2f}%")
 
 
 import os
