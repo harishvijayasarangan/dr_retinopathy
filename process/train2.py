@@ -14,9 +14,9 @@ from pytorch_lightning import Trainer
 from pytorch_lightning.callbacks import ModelCheckpoint
 os.makedirs("checkpoints", exist_ok=True)
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-print(f"🔥 Using device: {device}")
+print(f" Using device: {device}")
 if device.type == "cuda":
-    print(f"⚡ GPU: {torch.cuda.get_device_name(0)}")
+    print(f" GPU: {torch.cuda.get_device_name(0)}")
 train_csv = r"C:\Users\STIC-11\Desktop\class2\train.csv"
 val_csv = r"C:\Users\STIC-11\Desktop\class2\val.csv"
 image_dir = r"C:\Users\STIC-11\Desktop\sk1\mild_no_dr"
@@ -156,7 +156,7 @@ for epoch in range(num_epochs):
 
     epoch_loss = running_loss / len(train_loader)
     epoch_acc = 100 * correct / total
-    print(f"✅ Epoch {epoch+1}/{num_epochs} -> Loss: {epoch_loss:.4f}, Accuracy: {epoch_acc:.2f}%")
+    print(f"Epoch {epoch+1}/{num_epochs} -> Loss: {epoch_loss:.4f}, Accuracy: {epoch_acc:.2f}%")
 
     torch.save(model.state_dict(), "checkpoints/best_model3.ckpt")
-    print("✅ Model saved successfully!")
+    print(" Model saved successfully!")
